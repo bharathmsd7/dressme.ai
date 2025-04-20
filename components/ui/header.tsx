@@ -3,11 +3,12 @@ import Link from 'next/link'
 import { Input } from '@/components/ui/input'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { Sparkles } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { Plus } from 'lucide-react'
+import { useCreateStyle } from '@/store/use-create-style'
 
 export function Header() {
-    const router = useRouter()
+  const { openCreateStyle } = useCreateStyle()
+
   return (
     <>
       <div className="w-full bg-purple-100 py-2 text-center text-sm">
@@ -35,12 +36,12 @@ export function Header() {
               />
             </div>
             <Button 
-              variant="secondary" 
+              variant="outline"
               className="bg-purple-100 hover:bg-purple-200 text-purple-900"
-              onClick={() => router.push('/style-guide')}
+              onClick={() => openCreateStyle()}
             >
-              <Sparkles className="mr-2 h-4 w-4" />
-              Style me
+              <Plus className="mr-2 h-4 w-4" />
+              Create New Style
             </Button>
             <Avatar>
               <AvatarImage src="/avatar.png" />

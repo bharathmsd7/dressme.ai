@@ -1,5 +1,4 @@
 "use client"
-
 import { Header } from '@/components/ui/header'
 import { FilterChip } from '@/components/ui/filter-chips'
 import { ProductCard } from '@/components/ui/product-card'
@@ -9,9 +8,25 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Switch } from "@/components/ui/switch"
 import { PersonalizeDialog } from '@/components/ui/personalize-dialog'
 import { useState } from 'react'
+import { useCreateStyle } from '@/store/use-create-style' // Add this import
 
 export default function Dashboard() {
   const [personalizeOpen, setPersonalizeOpen] = useState(false)
+  const { filename } = useCreateStyle() 
+
+  const getImagePath = (index: number) => {
+    console.log("selected iamge", filename)
+    if (!filename) return `/dashboard/withoutstyle/anil${index}.png`
+    
+    if (filename === '1.png') {
+        return `/dashboard/withstyle1/amai${index}.png`
+    }
+    if (filename === '2.png') {
+        return `/dashboard/withstyle2/cat${index}.png`
+    }
+
+    return `/dashboard/withoutstyle/anil${index}.png`
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -60,62 +75,63 @@ export default function Dashboard() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <ProductCard
-            image="/jacket-1.jpg"
+            image={getImagePath(1)}
             title="Product Name"
             description="Description of the product"
           />
           <ProductCard
-            image="/jacket-2.jpg"
+            image={getImagePath(2)}
             title="Product Name"
             description="Description of the product"
           />
+          {/* Replace all other ProductCard image props with getImagePath() */}
           <ProductCard
-            image="/jacket-3.jpg"
+            image={getImagePath(3)}
             title="Product list 1"
             description="Description of the product"
           />
           <ProductCard
-            image="/jacket-4.jpg"
+            image={getImagePath(4)}
             title="Product list 1"
             description="Description of the product"
           />
           <ProductCard
-            image="/jacket-1.jpg"
+            image={getImagePath(5)}
             title="Product Name"
             description="Description of the product"
           />
           <ProductCard
-            image="/jacket-2.jpg"
+            image={getImagePath(6)}
             title="Product Name"
             description="Description of the product"
           />
           <ProductCard
-            image="/jacket-3.jpg"
+            image={getImagePath(7)}
             title="Product list 1"
             description="Description of the product"
           />
           <ProductCard
-            image="/jacket-4.jpg"
+            image={getImagePath(8)}
             title="Product list 1"
             description="Description of the product"
           />
           <ProductCard
-            image="/jacket-1.jpg"
+            image={getImagePath(9)}
             title="Product Name"
             description="Description of the product"
           />
           <ProductCard
-            image="/jacket-2.jpg"
+            image={getImagePath(10)}
             title="Product Name"
             description="Description of the product"
           />
           <ProductCard
-            image="/jacket-3.jpg"
+            image={getImagePath(11)}
             title="Product list 1"
             description="Description of the product"
           />
           <ProductCard
-            image="/jacket-4.jpg"
+            image={getImagePath(12)}
             title="Product list 1"
             description="Description of the product"
           />
